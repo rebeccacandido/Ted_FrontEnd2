@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Trabalho TED</title>
+</head>
+<body>
+  <h1>Ted Front-End 2</h1>
+
+  <script>
+    function calcular() {
+      let alturas = [];
+      let generos = [];
+
+      for (let i = 1; i <= 15; i++) {
+        let altura = parseFloat(prompt("Digite a altura da pessoa " + i + " (em metros, ex: 1.75):"));
+        let genero = prompt("Digite o gênero da pessoa " + i + " (M para Masculino ou F para Feminino):").toUpperCase();
+
+        alturas.push(altura);
+        generos.push(genero);
+      }
+
+      // Maior e menor altura
+      let maior = Math.max(...alturas);
+      let menor = Math.min(...alturas);
+
+      // Média de altura dos homens
+      let somaMasc = 0;
+      let qtdMasc = 0;
+      for (let i = 0; i < generos.length; i++) {
+        if (generos[i] === "M") {
+          somaMasc += alturas[i];
+          qtdMasc++;
+        }
+      }
+      let mediaMasc = qtdMasc > 0 ? (somaMasc / qtdMasc) : 0;
+
+      // Quantidade de mulheres
+      let qtdFem = generos.filter(g => g === "F").length;
+
+      // Exibe os resultados
+      document.write("<h2>Resultados</h2>");
+      document.write("Maior altura: " + maior.toFixed(2) + " m<br>");
+      document.write("Menor altura: " + menor.toFixed(2) + " m<br>");
+      document.write("Média de altura (Masculino): " + (qtdMasc > 0 ? mediaMasc.toFixed(2) + " m" : "Não há homens") + "<br>");
+      document.write("Número de pessoas do gênero Feminino: " + qtdFem);
+    }
+
+    calcular();
+  </script>
+</body>
+</html>
